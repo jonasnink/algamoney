@@ -11,7 +11,7 @@ module.exports = (options) => ({
         extensions: ['.ts', '.js'],
         modules: ['node_modules'],
         alias: {
-            app: utils.root('src/main/webapp/app/'),
+            app: utils.root('src/main/webappCustom/app/'),
             ...rxPaths()
         }
     },
@@ -31,7 +31,7 @@ module.exports = (options) => ({
                     minifyJS:false,
                     minifyCSS:false
                 },
-                exclude: ['./src/main/webapp/index.html']
+                exclude: ['./src/main/webappCustom/index.html']
             },
             {
                 test: /\.(jpe?g|png|gif|svg|woff2?|ttf|eot)$/i,
@@ -63,12 +63,12 @@ module.exports = (options) => ({
             { from: './node_modules/swagger-ui/dist/css', to: 'swagger-ui/dist/css' },
             { from: './node_modules/swagger-ui/dist/lib', to: 'swagger-ui/dist/lib' },
             { from: './node_modules/swagger-ui/dist/swagger-ui.min.js', to: 'swagger-ui/dist/swagger-ui.min.js' },
-            { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui' },
-            { from: './src/main/webapp/content/', to: 'content' },
-            { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
-            { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
+            { from: './src/main/webappCustom/swagger-ui/', to: 'swagger-ui' },
+            { from: './src/main/webappCustom/content/', to: 'content' },
+            { from: './src/main/webappCustom/favicon.ico', to: 'favicon.ico' },
+            { from: './src/main/webappCustom/manifest.webapp', to: 'manifest.webapp' },
             // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
-            { from: './src/main/webapp/robots.txt', to: 'robots.txt' }
+            { from: './src/main/webappCustom/robots.txt', to: 'robots.txt' }
         ]),
         new webpack.ProvidePlugin({
             $: "jquery",
@@ -77,13 +77,13 @@ module.exports = (options) => ({
         new MergeJsonWebpackPlugin({
             output: {
                 groupBy: [
-                    { pattern: "./src/main/webapp/i18n/pt-br/*.json", fileName: "./i18n/pt-br.json" }
+                    { pattern: "./src/main/webappCustom/i18n/pt-br/*.json", fileName: "./i18n/pt-br.json" }
                     // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
                 ]
             }
         }),
         new HtmlWebpackPlugin({
-            template: './src/main/webapp/index.html',
+            template: './src/main/webappCustom/index.html',
             chunksSortMode: 'dependency',
             inject: 'body'
         })

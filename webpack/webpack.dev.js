@@ -37,9 +37,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         }
     },
     entry: {
-        polyfills: './src/main/webapp/app/polyfills',
-        global: './src/main/webapp/content/scss/global.scss',
-        main: './src/main/webapp/app/app.main'
+        polyfills: './src/main/webappCustom/app/polyfills',
+        global: './src/main/webappCustom/content/scss/global.scss',
+        main: './src/main/webappCustom/app/app.main'
     },
     output: {
         path: utils.root('target/www'),
@@ -113,7 +113,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         }),
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)/,
-            path.resolve(__dirname, './src/main/webapp')
+            path.resolve(__dirname, './src/main/webappCustom')
         ),
         new writeFilePlugin(),
         new webpack.WatchIgnorePlugin([

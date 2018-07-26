@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Descrição" aria-label="Search" #descricao>
+        <button (click)="getLancamentosAll(descricao.value)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+    </form>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Observação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lancamento of lancamentos">
+        <td><a [routerLink]="['/lancamento', lancamento.id, 'view']">{{lancamento.id}}</a></td>
+        <td>{{lancamento.descricao}}</td>
+        <td>{{lancamento.valor}}</td>
+        <td>{{lancamento.observacao}}</td>
+    </tr>
+    </tbody>
+</table>

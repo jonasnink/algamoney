@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-endereco-heading" jhiTranslate="algamoneyApp.endereco.home.createOrEditLabel">Create or edit a Endereco</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!endereco.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="endereco.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.logradouro" for="field_logradouro">Logradouro</label>
+                    <input type="text" class="form-control" name="logradouro" id="field_logradouro"
+                        [(ngModel)]="endereco.logradouro" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.numero" for="field_numero">Numero</label>
+                    <input type="text" class="form-control" name="numero" id="field_numero"
+                        [(ngModel)]="endereco.numero" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.complemento" for="field_complemento">Complemento</label>
+                    <input type="text" class="form-control" name="complemento" id="field_complemento"
+                        [(ngModel)]="endereco.complemento" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.bairro" for="field_bairro">Bairro</label>
+                    <input type="text" class="form-control" name="bairro" id="field_bairro"
+                        [(ngModel)]="endereco.bairro" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.cep" for="field_cep">Cep</label>
+                    <input type="text" class="form-control" name="cep" id="field_cep"
+                        [(ngModel)]="endereco.cep" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.cidade" for="field_cidade">Cidade</label>
+                    <input type="text" class="form-control" name="cidade" id="field_cidade"
+                        [(ngModel)]="endereco.cidade" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.endereco.estado" for="field_estado">Estado</label>
+                    <input type="text" class="form-control" name="estado" id="field_estado"
+                        [(ngModel)]="endereco.estado" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

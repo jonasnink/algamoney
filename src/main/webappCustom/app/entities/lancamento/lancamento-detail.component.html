@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lancamento">
+            <h2><span jhiTranslate="algamoneyApp.lancamento.detail.title">Lancamento</span> {{lancamento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="algamoneyApp.lancamento.descricao">Descricao</span></dt>
+                <dd>
+                    <span>{{lancamento.descricao}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.dataVencimento">Data Vencimento</span></dt>
+                <dd>
+                    <span>{{lancamento.dataVencimento}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.dataPagamento">Data Pagamento</span></dt>
+                <dd>
+                    <span>{{lancamento.dataPagamento}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.valor">Valor</span></dt>
+                <dd>
+                    <span>{{lancamento.valor}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.observacao">Observacao</span></dt>
+                <dd>
+                    <span>{{lancamento.observacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.tipoLancamento">Tipo Lancamento</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'algamoneyApp.TipoLancamento.' + lancamento.tipoLancamento}}">{{lancamento.tipoLancamento}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.categoria">Categoria</span></dt>
+                <dd>
+                    <div *ngIf="lancamento.categoriaId">
+                        <a [routerLink]="['/categoria', lancamento.categoriaId, 'view']">{{lancamento.categoriaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.pessoa">Pessoa</span></dt>
+                <dd>
+                    <div *ngIf="lancamento.pessoaId">
+                        <a [routerLink]="['/pessoa', lancamento.pessoaId, 'view']">{{lancamento.pessoaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lancamento', lancamento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

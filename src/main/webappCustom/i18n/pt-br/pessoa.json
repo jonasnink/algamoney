@@ -1,0 +1,24 @@
+
+{
+    "algamoneyApp": {
+        "pessoa" : {
+            "home": {
+                "title": "Pessoas",
+                "createLabel": "Criar novo Pessoa",
+                "createOrEditLabel": "Criar ou editar Pessoa"
+            },
+            "created": "Um novo Pessoa foi criado com o identificador {{ param }}",
+            "updated": "Um Pessoa foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Pessoa foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Pessoa {{ id }}?"
+            },
+            "detail": {
+                "title": "Pessoa"
+            },
+            "nome": "Nome",
+            "ativo": "Ativo",
+            "endereco": "Endereco"
+        }
+    }
+}

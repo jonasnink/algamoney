@@ -1,0 +1,29 @@
+
+{
+    "algamoneyApp": {
+        "lancamento" : {
+            "home": {
+                "title": "Lancamentos",
+                "createLabel": "Criar novo Lancamento",
+                "createOrEditLabel": "Criar ou editar Lancamento"
+            },
+            "created": "Um novo Lancamento foi criado com o identificador {{ param }}",
+            "updated": "Um Lancamento foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Lancamento foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Lancamento {{ id }}?"
+            },
+            "detail": {
+                "title": "Lancamento"
+            },
+            "descricao": "Descricao",
+            "dataVencimento": "Data Vencimento",
+            "dataPagamento": "Data Pagamento",
+            "valor": "Valor",
+            "observacao": "Observacao",
+            "tipoLancamento": "Tipo Lancamento",
+            "categoria": "Categoria",
+            "pessoa": "Pessoa"
+        }
+    }
+}

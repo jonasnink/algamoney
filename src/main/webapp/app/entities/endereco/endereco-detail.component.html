@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="endereco">
+            <h2><span jhiTranslate="algamoneyApp.endereco.detail.title">Endereco</span> {{endereco.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="algamoneyApp.endereco.logradouro">Logradouro</span></dt>
+                <dd>
+                    <span>{{endereco.logradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.numero">Numero</span></dt>
+                <dd>
+                    <span>{{endereco.numero}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.complemento">Complemento</span></dt>
+                <dd>
+                    <span>{{endereco.complemento}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.bairro">Bairro</span></dt>
+                <dd>
+                    <span>{{endereco.bairro}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.cep">Cep</span></dt>
+                <dd>
+                    <span>{{endereco.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.cidade">Cidade</span></dt>
+                <dd>
+                    <span>{{endereco.cidade}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.endereco.estado">Estado</span></dt>
+                <dd>
+                    <span>{{endereco.estado}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/endereco', endereco.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+/* ==========================================================================
+Navbar
+========================================================================== */
+#navbar-top {
+    /* background-color: #930609 /*#0066b3; */
+    /* background-position: center top; */
+    background-image: url(http://intranet.mpro.gov/intranet2014-theme/images/marcadaguacabecalho2.png);
+    background-color: #930609;
+    background-position: center;
+    width: auto;
+    margin: 0 auto;
+}
+
+#navbar-menu {
+    background: #555;
+    border-width: 0;
+    //height: 36px;
+}
+
+.navbar-version {
+    font-size: 10px;
+    color: #ccc;
+}
+
+@media (min-width: 768px) {
+    #navbar-menu {
+        max-height: 65px;
+    }
+}
+@media (min-width: 1072px) {
+    #navbar-menu {
+        max-height: 36px;
+    }
+}
+@media (max-width: 429px) {
+    #logo {
+        max-width: 300px;
+        width: auto;
+        height: auto;
+    }
+}
+@media (min-width: 430px) {
+    #logo {
+        max-width: 450px;
+        width: auto;
+        height: auto;
+    }
+}
+@media (min-width: 615px) {
+    #logo {
+        max-width: 652px;
+        width: auto;
+        height: auto;
+    }
+}
+
+//#navbar-menu {
+//    max-height: 100px;
+//}
+
+.jh-navbar {
+    background-color: #353d47;
+    padding: 0.2em 1em;
+    .profile-image {
+        margin: -10px 0px;
+        height: 36px;
+        width: 40px;
+        border-radius: 50%;
+    }
+    .dropdown-item.active,
+    .dropdown-item.active:focus,
+    .dropdown-item.active:hover {
+        background-color: #353d47;
+    }
+    .dropdown-toggle::after {
+        margin-left: 0.15em;
+    }
+    ul.navbar-nav {
+        padding: 0.5em;
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+    }
+    a.nav-link {
+        font-weight: 400;
+    }
+    .jh-navbar-toggler {
+        color: #ccc;
+        font-size: 1.5em;
+        padding: 10px;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .jh-navbar-toggler {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .jh-logo-container {
+        width: 100%;
+    }
+}
+
+.navbar-title {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+//.navbar-brand {
+//    &.logo {
+//        padding: 5px 15px;
+//        .logo-img {
+//            height: 145px;
+//            width: 170px;
+//            display: inline-block;
+//            vertical-align: middle;
+//            background: url('../../../content/images/logo.png') no-repeat center center;
+//            background-size: contain;
+//        }
+//    }
+//}
