@@ -142,15 +142,12 @@ public class LancamentoServiceCustom extends LancamentoServiceImpl {
             .collect(Collectors.toList());
 
         Map<String, Object> parametros = new HashMap<>();
-        // parametros.put("DT_INICIO", Date.valueOf(inicio));
-        // parametros.put("DT_FIM", Date.valueOf(fim));
+
         parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
 
-        //InputStream inputStream = this.getClass().getResourceAsStream("/relatorios/lancamentos-por-pessoa.jasper");
-        InputStream inputStream = this.getClass().getResourceAsStream("/relatorios/relatorio_equipe.jasper");
+        InputStream inputStream = this.getClass().getResourceAsStream("/relatorios/lancamentos-por-pessoa.jasper");
 
-        //JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, new JRBeanCollectionDataSource(lancamentoEstatisticaPessoaList));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream, parametros, new JRBeanCollectionDataSource(lancamentoEstatisticaPessoaList));
 
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
