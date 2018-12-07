@@ -4,6 +4,7 @@ import { AlgamoneyEnderecoModule } from './endereco/endereco.module';
 import { AlgamoneyPessoaModule } from './pessoa/pessoa.module';
 import { AlgamoneyCategoriaModule } from './categoria/categoria.module';
 import { AlgamoneyLancamentoModule } from './lancamento/lancamento.module';
+import { AlgamoneyContatoModule } from './contato/contato.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AlgamoneyLancamentoModule } from './lancamento/lancamento.module';
         AlgamoneyPessoaModule,
         AlgamoneyCategoriaModule,
         AlgamoneyLancamentoModule,
+        AlgamoneyContatoModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

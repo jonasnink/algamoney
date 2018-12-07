@@ -29,6 +29,10 @@
                 <dd>
                     <span jhiTranslate="{{'algamoneyApp.TipoLancamento.' + lancamento.tipoLancamento}}">{{lancamento.tipoLancamento}}</span>
                 </dd>
+                <dt><span jhiTranslate="algamoneyApp.lancamento.anexo">Anexo</span></dt>
+                <dd>
+                    <span>{{lancamento.anexo}}</span>
+                </dd>
                 <dt><span jhiTranslate="algamoneyApp.lancamento.categoria">Categoria</span></dt>
                 <dd>
                     <div *ngIf="lancamento.categoriaId">
@@ -38,7 +42,7 @@
                 <dt><span jhiTranslate="algamoneyApp.lancamento.pessoa">Pessoa</span></dt>
                 <dd>
                     <div *ngIf="lancamento.pessoaId">
-                        <a [routerLink]="['/pessoa', lancamento.pessoaId, 'view']">{{lancamento.pessoaId}}</a>
+                        <a [routerLink]="['/pessoa', lancamento.pessoaId, 'view']">{{lancamento.pessoaNome}}</a>
                     </div>
                 </dd>
             </dl>

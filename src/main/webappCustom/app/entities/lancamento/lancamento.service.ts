@@ -39,6 +39,7 @@ export class LancamentoService {
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {
+        console.log(this.resourceUrl, '<=lancamento');
         const options = createRequestOption(req);
         return this.http
             .get<ILancamento[]>(this.resourceUrl, { params: options, observe: 'response' })
@@ -60,6 +61,14 @@ export class LancamentoService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    downloadComprovante(comprovante: string) {
+        let req = {
+            comprovante: comprovante
+        };
+        const options = createRequestOption(req);
+        return this.http.get(`${this.resourceUrl}/download`, { params: options, observe: 'response', responseType: 'blob' });
     }
 
     private convertDateFromClient(lancamento: ILancamento): ILancamento {

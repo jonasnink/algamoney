@@ -1,0 +1,29 @@
+
+{
+    "algamoneyApp": {
+        "contato" : {
+            "home": {
+                "title": "Contatoes",
+                "createLabel": "Criar novo Contato",
+                "createOrEditLabel": "Criar ou editar Contato"
+            },
+            "created": "Um novo Contato foi criado com o identificador {{ param }}",
+            "updated": "Um Contato foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Contato foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Contato {{ id }}?"
+            },
+            "detail": {
+                "title": "Contato"
+            },
+            "codigo": "Codigo",
+            "nome": "Nome",
+            "email": "Email",
+            "telefone": "Telefone",
+            "teste": "Teste",
+            "teste2": "Teste 2",
+            "teste3": "Teste 3",
+            "pessoa": "Pessoa"
+        }
+    }
+}

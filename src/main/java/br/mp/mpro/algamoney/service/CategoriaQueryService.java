@@ -61,7 +61,6 @@ public class CategoriaQueryService extends QueryService<Categoria> {
      */
     @Transactional(readOnly = true)
     public Page<CategoriaDTO> findByCriteria(CategoriaCriteria criteria, Pageable page) {
-
         log.debug("find by criteria : {}, page: {}", criteria, page);
         final Specification<Categoria> specification = createSpecification(criteria);
         return categoriaRepository.findAll(specification, page)

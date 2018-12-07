@@ -24,7 +24,7 @@ export class LancamentoCriteria implements ILancamentoCriteria {
     pessoaId = new CriteriaNumberOrDate();
 }
 
-// export class LancamentoCriteria implements ILancamentoCriteria {
+// export class LancamentoCriteriaCustom implements ILancamentoCriteria {
 //     constructor(
 //         public id = new CriteriaNumberOrDate(),
 //         public descricao = new CriteriaString(),

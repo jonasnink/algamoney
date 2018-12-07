@@ -49,6 +49,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        console.log('loadAll');
         this.categoriaService
             .query({
                 page: this.page - 1,
@@ -62,6 +63,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
     }
 
     loadPage(page: number) {
+        console.log('debug => loadPage');
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
@@ -69,6 +71,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
     }
 
     transition() {
+        console.log('debug => transition');
         this.router.navigate(['/categoria'], {
             queryParams: {
                 page: this.page,
@@ -80,6 +83,7 @@ export class CategoriaComponent implements OnInit, OnDestroy {
     }
 
     clear() {
+        console.log('debug => clear');
         this.page = 0;
         this.router.navigate([
             '/categoria',
@@ -92,22 +96,27 @@ export class CategoriaComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        console.log('debug => ngOnInit', this.principal);
         this.loadAll();
         this.principal.identity().then(account => {
             this.currentAccount = account;
+            console.log('debug => ngOnInit => ', account);
         });
         this.registerChangeInCategorias();
     }
 
     ngOnDestroy() {
+        console.log('debug => ngOnDestroy');
         this.eventManager.destroy(this.eventSubscriber);
     }
 
     trackId(index: number, item: ICategoria) {
+        console.log('debug => trackId', item);
         return item.id;
     }
 
     registerChangeInCategorias() {
+        console.log('debug => registerChangeInCategorias');
         this.eventSubscriber = this.eventManager.subscribe('categoriaListModification', response => this.loadAll());
     }
 

@@ -1,15 +1,9 @@
 <nav class="navbar navbar-dark navbar-expand-md jh-navbar" id="navbar-top">
     <div class="jh-logo-container float-left">
-        <!--<a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">-->
-            <!--<fa-icon [icon]="'bars'"></fa-icon>-->
-        <!--</a>-->
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <!--<span class="logo-img"></span>-->
             <img id="logo" src="../../../content/images/logo.png" height="98" width="652"/>
-            <!--<span jhiTranslate="global.title" class="navbar-title">Algamoney</span> <span class="navbar-version">{{version}}</span>-->
         </a>
     </div>
-
 </nav>
 <nav class="navbar navbar-dark navbar-expand-md jh-navbar" id="navbar-menu">
     <div class="jh-logo-container float-left">
@@ -17,7 +11,6 @@
             <fa-icon [icon]="'bars'"></fa-icon>
         </a>
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()" id="nome-sistema">
-            <!--<span class="logo-img"></span>-->
             <span jhiTranslate="global.title" class="navbar-title">Algamoney</span> <span class="navbar-version">{{version}}</span>
         </a>
     </div>
@@ -36,6 +29,24 @@
                     <span>
                         <fa-icon [icon]="'th-list'"></fa-icon>
                         <span>Lançamentos</span>
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="relatorios/lancamentos" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'th-list'"></fa-icon>
+                        <span>Relatórios</span>
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="lancamento-resumo" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'th-list'"></fa-icon>
+                        <span>Resumo de Lançamentos</span>
                     </span>
                 </a>
             </li>

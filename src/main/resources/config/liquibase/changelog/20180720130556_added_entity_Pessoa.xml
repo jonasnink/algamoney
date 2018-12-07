@@ -29,6 +29,31 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="foto" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="foto_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="img_arquivo" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="img_arquivo_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="arquivo" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="arquivo_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="endereco_id" type="bigint">
                 <constraints nullable="true" />
             </column>

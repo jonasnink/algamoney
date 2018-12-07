@@ -1,0 +1,48 @@
+enum TipoLancamento {
+	RECEITA, DESPESA
+}
+entity Endereco {	
+    logradouro String,
+    numero String,
+    complemento String,
+    bairro String,
+    cep String,
+    cidade String,
+    estado String    
+}
+entity Pessoa {
+	nome String required minlength(4),
+    ativo Boolean,
+    foto Blob,
+    email String,
+    imgArquivo ImageBlob,
+    arquivo Blob
+    
+}
+relationship ManyToOne {
+	Pessoa{endereco(numero)} to Endereco{}
+}
+
+entity Categoria {
+	nome String
+}
+entity Lancamento{
+	descricao String,
+    dataVencimento LocalDate,
+    dataPagamento LocalDate,
+    valor BigDecimal,
+    observacao String,
+    tipoLancamento TipoLancamento
+}
+relationship ManyToOne{
+Lancamento{categoria} to Categoria
+}
+relationship ManyToOne{
+Lancamento{pessoa} to Pessoa
+}
+
+
+dto * with mapstruct
+service all with serviceImpl
+paginate * with pagination
+filter Categoria, Lancamento, Endereco, Pessoa

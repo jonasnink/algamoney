@@ -18,7 +18,12 @@
             },
             "nome": "Nome",
             "ativo": "Ativo",
-            "endereco": "Endereco"
+            "foto": "Foto",
+            "email": "Email",
+            "imgArquivo": "Img Arquivo",
+            "arquivo": "Arquivo",
+            "endereco": "Endereco",
+            "contatos": "Contatos"
         }
     }
 }

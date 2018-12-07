@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-contato-heading" jhiTranslate="algamoneyApp.contato.home.createOrEditLabel">Create or edit a Contato</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!contato.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="contato.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.codigo" for="field_codigo">Codigo</label>
+                    <input type="number" class="form-control" name="codigo" id="field_codigo"
+                        [(ngModel)]="contato.codigo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                        [(ngModel)]="contato.nome" required/>
+                    <div [hidden]="!(editForm.controls.nome?.dirty && editForm.controls.nome?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nome?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="contato.email" required/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.telefone" for="field_telefone">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" id="field_telefone"
+                        [(ngModel)]="contato.telefone" required/>
+                    <div [hidden]="!(editForm.controls.telefone?.dirty && editForm.controls.telefone?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.telefone?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.teste" for="field_teste">Teste</label>
+                    <input type="text" class="form-control" name="teste" id="field_teste"
+                        [(ngModel)]="contato.teste" pattern="^[a-zA-Z0-9]*$"/>
+                    <div [hidden]="!(editForm.controls.teste?.dirty && editForm.controls.teste?.invalid)">
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.teste?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Teste' }">
+                            This field should follow pattern for "Teste".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.teste2" for="field_teste2">Teste 2</label>
+                    <input type="text" class="form-control" name="teste2" id="field_teste2"
+                        [(ngModel)]="contato.teste2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.teste3" for="field_teste3">Teste 3</label>
+                    <input type="text" class="form-control" name="teste3" id="field_teste3"
+                        [(ngModel)]="contato.teste3" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.contato.pessoa" for="field_pessoa">Pessoa</label>
+                    <select class="form-control" id="field_pessoa" name="pessoa" [(ngModel)]="contato.pessoaId"  required>
+                        <option *ngIf="!editForm.value.pessoa" [ngValue]="null" selected></option>
+                        <option [ngValue]="pessoaOption.id" *ngFor="let pessoaOption of pessoas; trackBy: trackPessoaById">{{pessoaOption.nome}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.pessoa?.dirty && editForm.controls.pessoa?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.pessoa?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

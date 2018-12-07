@@ -51,6 +51,11 @@
                         <option value="DESPESA">{{'algamoneyApp.TipoLancamento.DESPESA' | translate}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.lancamento.anexo" for="field_anexo">Anexo</label>
+                    <input type="text" class="form-control" name="anexo" id="field_anexo"
+                        [(ngModel)]="lancamento.anexo" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="algamoneyApp.lancamento.categoria" for="field_categoria">Categoria</label>
@@ -63,7 +68,7 @@
                     <label class="form-control-label" jhiTranslate="algamoneyApp.lancamento.pessoa" for="field_pessoa">Pessoa</label>
                     <select class="form-control" id="field_pessoa" name="pessoa" [(ngModel)]="lancamento.pessoaId" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="pessoaOption.id" *ngFor="let pessoaOption of pessoas; trackBy: trackPessoaById">{{pessoaOption.id}}</option>
+                        <option [ngValue]="pessoaOption.id" *ngFor="let pessoaOption of pessoas; trackBy: trackPessoaById">{{pessoaOption.nome}}</option>
                     </select>
                 </div>
             </div>

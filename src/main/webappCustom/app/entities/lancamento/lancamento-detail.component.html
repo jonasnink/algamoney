@@ -32,13 +32,13 @@
                 <dt><span jhiTranslate="algamoneyApp.lancamento.categoria">Categoria</span></dt>
                 <dd>
                     <div *ngIf="lancamento.categoriaId">
-                        <a [routerLink]="['/categoria', lancamento.categoriaId, 'view']">{{lancamento.categoriaId}}</a>
+                        <a [routerLink]="['/categoria', lancamento.categoriaId, 'view']">{{lancamento.categoriaNome}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="algamoneyApp.lancamento.pessoa">Pessoa</span></dt>
                 <dd>
                     <div *ngIf="lancamento.pessoaId">
-                        <a [routerLink]="['/pessoa', lancamento.pessoaId, 'view']">{{lancamento.pessoaId}}</a>
+                        <a [routerLink]="['/pessoa', lancamento.pessoaId, 'view']">{{lancamento.pessoaNome}}</a>
                     </div>
                 </dd>
             </dl>

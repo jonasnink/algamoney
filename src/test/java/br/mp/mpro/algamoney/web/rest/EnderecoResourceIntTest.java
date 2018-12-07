@@ -571,7 +571,7 @@ public class EnderecoResourceIntTest {
         // Create the Endereco
         EnderecoDTO enderecoDTO = enderecoMapper.toDto(endereco);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restEnderecoMockMvc.perform(put("/api/enderecos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(enderecoDTO)))

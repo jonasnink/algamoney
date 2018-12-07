@@ -7,12 +7,25 @@
             Create new Lancamento
             </span>
         </button>
-        <nav class="navbar navbar-light bg-light">
-            <form class="form-inline">
-                <input [(ngModel)]="lancamentoCriteria.descricao.contains" name="descricao" class="form-control mr-sm-2" type="search" placeholder="Descrição" aria-label="Search" #descricao>
-                <button (click)="filtrar(descricao.value)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
-        </nav>
+
+
+        <div class="row">
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline">
+                    <input name="descricao" class="form-control mr-sm-2" type="search" placeholder="Descrição" aria-label="Search" #descricao>
+                    <!--<button (click)="filtrar(descricao.value)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>-->
+                    <div class="col">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="pesquisarLancamento" ngbDropdownToggle>Pesquisar</button>
+                            <div ngbDropdownMenu aria-labelledby="pesquisarLancamento">
+                                <button class="dropdown-item"><a (click)="[limparCriteria(), lancamentoCriteria.descricao.equals = descricao.value, filtrar(descricao.value)]">Igual</a> </button>
+                                <button class="dropdown-item"><a (click)="[limparCriteria(), lancamentoCriteria.descricao.contains = descricao.value, filtrar(descricao.value)]">Contendo</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </nav>
+        </div>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
@@ -43,12 +56,12 @@
                 <td jhiTranslate="{{'algamoneyApp.TipoLancamento.' + lancamento.tipoLancamento}}">{{lancamento.tipoLancamento}}</td>
                 <td>
                     <div *ngIf="lancamento.categoriaId">
-                        <a [routerLink]="['../categoria', lancamento.categoriaId , 'view' ]" >{{lancamento.categoriaId}}</a>
+                        <a [routerLink]="['../categoria', lancamento.categoriaId , 'view' ]" >{{lancamento.categoriaNome}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="lancamento.pessoaId">
-                        <a [routerLink]="['../pessoa', lancamento.pessoaId , 'view' ]" >{{lancamento.pessoaId}}</a>
+                        <a [routerLink]="['../pessoa', lancamento.pessoaId , 'view' ]" >{{lancamento.pessoaNome}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -88,3 +101,41 @@
         </div>
     </div>
 </div>
+
+
+
+<!--<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">-->
+    <!--<ngb-panel title="Simple">-->
+        <!--<ng-template ngbPanelContent>-->
+            <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia-->
+            <!--aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,-->
+            <!--sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,-->
+            <!--craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings-->
+            <!--occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus-->
+            <!--labore sustainable VHS.-->
+        <!--</ng-template>-->
+    <!--</ngb-panel>-->
+    <!--<ngb-panel>-->
+        <!--<ng-template ngbPanelTitle>-->
+            <!--<span>&#9733; <b>Fancy</b> title &#9733;</span>-->
+        <!--</ng-template>-->
+        <!--<ng-template ngbPanelContent>-->
+            <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia-->
+            <!--aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,-->
+            <!--sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,-->
+            <!--craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings-->
+            <!--occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus-->
+            <!--labore sustainable VHS.-->
+        <!--</ng-template>-->
+    <!--</ngb-panel>-->
+    <!--<ngb-panel title="Disabled" [disabled]="true">-->
+        <!--<ng-template ngbPanelContent>-->
+            <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia-->
+            <!--aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,-->
+            <!--sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,-->
+            <!--craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings-->
+            <!--occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus-->
+            <!--labore sustainable VHS.-->
+        <!--</ng-template>-->
+    <!--</ngb-panel>-->
+<!--</ngb-accordion>-->

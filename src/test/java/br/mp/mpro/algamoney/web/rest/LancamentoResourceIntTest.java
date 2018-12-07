@@ -68,6 +68,9 @@ public class LancamentoResourceIntTest {
     private static final TipoLancamento DEFAULT_TIPO_LANCAMENTO = TipoLancamento.RECEITA;
     private static final TipoLancamento UPDATED_TIPO_LANCAMENTO = TipoLancamento.DESPESA;
 
+    private static final String DEFAULT_ANEXO = "AAAAAAAAAA";
+    private static final String UPDATED_ANEXO = "BBBBBBBBBB";
+
     @Autowired
     private LancamentoRepository lancamentoRepository;
 
@@ -122,7 +125,8 @@ public class LancamentoResourceIntTest {
             .dataPagamento(DEFAULT_DATA_PAGAMENTO)
             .valor(DEFAULT_VALOR)
             .observacao(DEFAULT_OBSERVACAO)
-            .tipoLancamento(DEFAULT_TIPO_LANCAMENTO);
+            .tipoLancamento(DEFAULT_TIPO_LANCAMENTO)
+            .anexo(DEFAULT_ANEXO);
         return lancamento;
     }
 
@@ -153,6 +157,7 @@ public class LancamentoResourceIntTest {
         assertThat(testLancamento.getValor()).isEqualTo(DEFAULT_VALOR);
         assertThat(testLancamento.getObservacao()).isEqualTo(DEFAULT_OBSERVACAO);
         assertThat(testLancamento.getTipoLancamento()).isEqualTo(DEFAULT_TIPO_LANCAMENTO);
+        assertThat(testLancamento.getAnexo()).isEqualTo(DEFAULT_ANEXO);
     }
 
     @Test
@@ -191,7 +196,8 @@ public class LancamentoResourceIntTest {
             .andExpect(jsonPath("$.[*].dataPagamento").value(hasItem(DEFAULT_DATA_PAGAMENTO.toString())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.intValue())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO.toString())))
-            .andExpect(jsonPath("$.[*].tipoLancamento").value(hasItem(DEFAULT_TIPO_LANCAMENTO.toString())));
+            .andExpect(jsonPath("$.[*].tipoLancamento").value(hasItem(DEFAULT_TIPO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].anexo").value(hasItem(DEFAULT_ANEXO.toString())));
     }
     
 
@@ -211,7 +217,8 @@ public class LancamentoResourceIntTest {
             .andExpect(jsonPath("$.dataPagamento").value(DEFAULT_DATA_PAGAMENTO.toString()))
             .andExpect(jsonPath("$.valor").value(DEFAULT_VALOR.intValue()))
             .andExpect(jsonPath("$.observacao").value(DEFAULT_OBSERVACAO.toString()))
-            .andExpect(jsonPath("$.tipoLancamento").value(DEFAULT_TIPO_LANCAMENTO.toString()));
+            .andExpect(jsonPath("$.tipoLancamento").value(DEFAULT_TIPO_LANCAMENTO.toString()))
+            .andExpect(jsonPath("$.anexo").value(DEFAULT_ANEXO.toString()));
     }
 
     @Test
@@ -504,6 +511,45 @@ public class LancamentoResourceIntTest {
 
     @Test
     @Transactional
+    public void getAllLancamentosByAnexoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        lancamentoRepository.saveAndFlush(lancamento);
+
+        // Get all the lancamentoList where anexo equals to DEFAULT_ANEXO
+        defaultLancamentoShouldBeFound("anexo.equals=" + DEFAULT_ANEXO);
+
+        // Get all the lancamentoList where anexo equals to UPDATED_ANEXO
+        defaultLancamentoShouldNotBeFound("anexo.equals=" + UPDATED_ANEXO);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLancamentosByAnexoIsInShouldWork() throws Exception {
+        // Initialize the database
+        lancamentoRepository.saveAndFlush(lancamento);
+
+        // Get all the lancamentoList where anexo in DEFAULT_ANEXO or UPDATED_ANEXO
+        defaultLancamentoShouldBeFound("anexo.in=" + DEFAULT_ANEXO + "," + UPDATED_ANEXO);
+
+        // Get all the lancamentoList where anexo equals to UPDATED_ANEXO
+        defaultLancamentoShouldNotBeFound("anexo.in=" + UPDATED_ANEXO);
+    }
+
+    @Test
+    @Transactional
+    public void getAllLancamentosByAnexoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        lancamentoRepository.saveAndFlush(lancamento);
+
+        // Get all the lancamentoList where anexo is not null
+        defaultLancamentoShouldBeFound("anexo.specified=true");
+
+        // Get all the lancamentoList where anexo is null
+        defaultLancamentoShouldNotBeFound("anexo.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllLancamentosByCategoriaIsEqualToSomething() throws Exception {
         // Initialize the database
         Categoria categoria = CategoriaResourceIntTest.createEntity(em);
@@ -552,7 +598,8 @@ public class LancamentoResourceIntTest {
             .andExpect(jsonPath("$.[*].dataPagamento").value(hasItem(DEFAULT_DATA_PAGAMENTO.toString())))
             .andExpect(jsonPath("$.[*].valor").value(hasItem(DEFAULT_VALOR.intValue())))
             .andExpect(jsonPath("$.[*].observacao").value(hasItem(DEFAULT_OBSERVACAO.toString())))
-            .andExpect(jsonPath("$.[*].tipoLancamento").value(hasItem(DEFAULT_TIPO_LANCAMENTO.toString())));
+            .andExpect(jsonPath("$.[*].tipoLancamento").value(hasItem(DEFAULT_TIPO_LANCAMENTO.toString())))
+            .andExpect(jsonPath("$.[*].anexo").value(hasItem(DEFAULT_ANEXO.toString())));
     }
 
     /**
@@ -592,7 +639,8 @@ public class LancamentoResourceIntTest {
             .dataPagamento(UPDATED_DATA_PAGAMENTO)
             .valor(UPDATED_VALOR)
             .observacao(UPDATED_OBSERVACAO)
-            .tipoLancamento(UPDATED_TIPO_LANCAMENTO);
+            .tipoLancamento(UPDATED_TIPO_LANCAMENTO)
+            .anexo(UPDATED_ANEXO);
         LancamentoDTO lancamentoDTO = lancamentoMapper.toDto(updatedLancamento);
 
         restLancamentoMockMvc.perform(put("/api/lancamentos")
@@ -610,6 +658,7 @@ public class LancamentoResourceIntTest {
         assertThat(testLancamento.getValor()).isEqualTo(UPDATED_VALOR);
         assertThat(testLancamento.getObservacao()).isEqualTo(UPDATED_OBSERVACAO);
         assertThat(testLancamento.getTipoLancamento()).isEqualTo(UPDATED_TIPO_LANCAMENTO);
+        assertThat(testLancamento.getAnexo()).isEqualTo(UPDATED_ANEXO);
     }
 
     @Test
@@ -620,7 +669,7 @@ public class LancamentoResourceIntTest {
         // Create the Lancamento
         LancamentoDTO lancamentoDTO = lancamentoMapper.toDto(lancamento);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restLancamentoMockMvc.perform(put("/api/lancamentos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(lancamentoDTO)))

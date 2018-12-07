@@ -5,7 +5,7 @@
   "projects": {
     "algamoney": {
       "root": "",
-      "sourceRoot": "src/main/webapp",
+      "sourceRoot": "src/main/webappCustom",
       "projectType": "application",
       "architect": {}
     }

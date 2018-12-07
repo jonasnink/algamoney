@@ -4,6 +4,7 @@ import br.mp.mpro.algamoney.AlgamoneyApp;
 
 import br.mp.mpro.algamoney.domain.Pessoa;
 import br.mp.mpro.algamoney.domain.Endereco;
+import br.mp.mpro.algamoney.domain.Contato;
 import br.mp.mpro.algamoney.repository.PessoaRepository;
 import br.mp.mpro.algamoney.service.PessoaService;
 import br.mp.mpro.algamoney.service.dto.PessoaDTO;
@@ -25,6 +26,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -50,6 +52,24 @@ public class PessoaResourceIntTest {
 
     private static final Boolean DEFAULT_ATIVO = false;
     private static final Boolean UPDATED_ATIVO = true;
+
+    private static final byte[] DEFAULT_FOTO = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_FOTO = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_FOTO_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_FOTO_CONTENT_TYPE = "image/png";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_IMG_ARQUIVO = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_IMG_ARQUIVO = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_IMG_ARQUIVO_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_IMG_ARQUIVO_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_ARQUIVO = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_ARQUIVO = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_ARQUIVO_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_ARQUIVO_CONTENT_TYPE = "image/png";
 
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -101,7 +121,14 @@ public class PessoaResourceIntTest {
     public static Pessoa createEntity(EntityManager em) {
         Pessoa pessoa = new Pessoa()
             .nome(DEFAULT_NOME)
-            .ativo(DEFAULT_ATIVO);
+            .ativo(DEFAULT_ATIVO)
+            .foto(DEFAULT_FOTO)
+            .fotoContentType(DEFAULT_FOTO_CONTENT_TYPE)
+            .email(DEFAULT_EMAIL)
+            .imgArquivo(DEFAULT_IMG_ARQUIVO)
+            .imgArquivoContentType(DEFAULT_IMG_ARQUIVO_CONTENT_TYPE)
+            .arquivo(DEFAULT_ARQUIVO)
+            .arquivoContentType(DEFAULT_ARQUIVO_CONTENT_TYPE);
         return pessoa;
     }
 
@@ -128,6 +155,13 @@ public class PessoaResourceIntTest {
         Pessoa testPessoa = pessoaList.get(pessoaList.size() - 1);
         assertThat(testPessoa.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testPessoa.isAtivo()).isEqualTo(DEFAULT_ATIVO);
+        assertThat(testPessoa.getFoto()).isEqualTo(DEFAULT_FOTO);
+        assertThat(testPessoa.getFotoContentType()).isEqualTo(DEFAULT_FOTO_CONTENT_TYPE);
+        assertThat(testPessoa.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testPessoa.getImgArquivo()).isEqualTo(DEFAULT_IMG_ARQUIVO);
+        assertThat(testPessoa.getImgArquivoContentType()).isEqualTo(DEFAULT_IMG_ARQUIVO_CONTENT_TYPE);
+        assertThat(testPessoa.getArquivo()).isEqualTo(DEFAULT_ARQUIVO);
+        assertThat(testPessoa.getArquivoContentType()).isEqualTo(DEFAULT_ARQUIVO_CONTENT_TYPE);
     }
 
     @Test
@@ -181,7 +215,14 @@ public class PessoaResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pessoa.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].fotoContentType").value(hasItem(DEFAULT_FOTO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].foto").value(hasItem(Base64Utils.encodeToString(DEFAULT_FOTO))))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].imgArquivoContentType").value(hasItem(DEFAULT_IMG_ARQUIVO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].imgArquivo").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMG_ARQUIVO))))
+            .andExpect(jsonPath("$.[*].arquivoContentType").value(hasItem(DEFAULT_ARQUIVO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].arquivo").value(hasItem(Base64Utils.encodeToString(DEFAULT_ARQUIVO))));
     }
     
 
@@ -197,7 +238,14 @@ public class PessoaResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(pessoa.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME.toString()))
-            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()));
+            .andExpect(jsonPath("$.ativo").value(DEFAULT_ATIVO.booleanValue()))
+            .andExpect(jsonPath("$.fotoContentType").value(DEFAULT_FOTO_CONTENT_TYPE))
+            .andExpect(jsonPath("$.foto").value(Base64Utils.encodeToString(DEFAULT_FOTO)))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.imgArquivoContentType").value(DEFAULT_IMG_ARQUIVO_CONTENT_TYPE))
+            .andExpect(jsonPath("$.imgArquivo").value(Base64Utils.encodeToString(DEFAULT_IMG_ARQUIVO)))
+            .andExpect(jsonPath("$.arquivoContentType").value(DEFAULT_ARQUIVO_CONTENT_TYPE))
+            .andExpect(jsonPath("$.arquivo").value(Base64Utils.encodeToString(DEFAULT_ARQUIVO)));
     }
 
     @Test
@@ -280,6 +328,45 @@ public class PessoaResourceIntTest {
 
     @Test
     @Transactional
+    public void getAllPessoasByEmailIsEqualToSomething() throws Exception {
+        // Initialize the database
+        pessoaRepository.saveAndFlush(pessoa);
+
+        // Get all the pessoaList where email equals to DEFAULT_EMAIL
+        defaultPessoaShouldBeFound("email.equals=" + DEFAULT_EMAIL);
+
+        // Get all the pessoaList where email equals to UPDATED_EMAIL
+        defaultPessoaShouldNotBeFound("email.equals=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPessoasByEmailIsInShouldWork() throws Exception {
+        // Initialize the database
+        pessoaRepository.saveAndFlush(pessoa);
+
+        // Get all the pessoaList where email in DEFAULT_EMAIL or UPDATED_EMAIL
+        defaultPessoaShouldBeFound("email.in=" + DEFAULT_EMAIL + "," + UPDATED_EMAIL);
+
+        // Get all the pessoaList where email equals to UPDATED_EMAIL
+        defaultPessoaShouldNotBeFound("email.in=" + UPDATED_EMAIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPessoasByEmailIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        pessoaRepository.saveAndFlush(pessoa);
+
+        // Get all the pessoaList where email is not null
+        defaultPessoaShouldBeFound("email.specified=true");
+
+        // Get all the pessoaList where email is null
+        defaultPessoaShouldNotBeFound("email.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllPessoasByEnderecoIsEqualToSomething() throws Exception {
         // Initialize the database
         Endereco endereco = EnderecoResourceIntTest.createEntity(em);
@@ -296,6 +383,25 @@ public class PessoaResourceIntTest {
         defaultPessoaShouldNotBeFound("enderecoId.equals=" + (enderecoId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllPessoasByContatosIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Contato contatos = ContatoResourceIntTest.createEntity(em);
+        em.persist(contatos);
+        em.flush();
+        pessoa.addContatos(contatos);
+        pessoaRepository.saveAndFlush(pessoa);
+        Long contatosId = contatos.getId();
+
+        // Get all the pessoaList where contatos equals to contatosId
+        defaultPessoaShouldBeFound("contatosId.equals=" + contatosId);
+
+        // Get all the pessoaList where contatos equals to contatosId + 1
+        defaultPessoaShouldNotBeFound("contatosId.equals=" + (contatosId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -305,7 +411,14 @@ public class PessoaResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pessoa.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())));
+            .andExpect(jsonPath("$.[*].ativo").value(hasItem(DEFAULT_ATIVO.booleanValue())))
+            .andExpect(jsonPath("$.[*].fotoContentType").value(hasItem(DEFAULT_FOTO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].foto").value(hasItem(Base64Utils.encodeToString(DEFAULT_FOTO))))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].imgArquivoContentType").value(hasItem(DEFAULT_IMG_ARQUIVO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].imgArquivo").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMG_ARQUIVO))))
+            .andExpect(jsonPath("$.[*].arquivoContentType").value(hasItem(DEFAULT_ARQUIVO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].arquivo").value(hasItem(Base64Utils.encodeToString(DEFAULT_ARQUIVO))));
     }
 
     /**
@@ -341,7 +454,14 @@ public class PessoaResourceIntTest {
         em.detach(updatedPessoa);
         updatedPessoa
             .nome(UPDATED_NOME)
-            .ativo(UPDATED_ATIVO);
+            .ativo(UPDATED_ATIVO)
+            .foto(UPDATED_FOTO)
+            .fotoContentType(UPDATED_FOTO_CONTENT_TYPE)
+            .email(UPDATED_EMAIL)
+            .imgArquivo(UPDATED_IMG_ARQUIVO)
+            .imgArquivoContentType(UPDATED_IMG_ARQUIVO_CONTENT_TYPE)
+            .arquivo(UPDATED_ARQUIVO)
+            .arquivoContentType(UPDATED_ARQUIVO_CONTENT_TYPE);
         PessoaDTO pessoaDTO = pessoaMapper.toDto(updatedPessoa);
 
         restPessoaMockMvc.perform(put("/api/pessoas")
@@ -355,6 +475,13 @@ public class PessoaResourceIntTest {
         Pessoa testPessoa = pessoaList.get(pessoaList.size() - 1);
         assertThat(testPessoa.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testPessoa.isAtivo()).isEqualTo(UPDATED_ATIVO);
+        assertThat(testPessoa.getFoto()).isEqualTo(UPDATED_FOTO);
+        assertThat(testPessoa.getFotoContentType()).isEqualTo(UPDATED_FOTO_CONTENT_TYPE);
+        assertThat(testPessoa.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPessoa.getImgArquivo()).isEqualTo(UPDATED_IMG_ARQUIVO);
+        assertThat(testPessoa.getImgArquivoContentType()).isEqualTo(UPDATED_IMG_ARQUIVO_CONTENT_TYPE);
+        assertThat(testPessoa.getArquivo()).isEqualTo(UPDATED_ARQUIVO);
+        assertThat(testPessoa.getArquivoContentType()).isEqualTo(UPDATED_ARQUIVO_CONTENT_TYPE);
     }
 
     @Test
@@ -365,7 +492,7 @@ public class PessoaResourceIntTest {
         // Create the Pessoa
         PessoaDTO pessoaDTO = pessoaMapper.toDto(pessoa);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restPessoaMockMvc.perform(put("/api/pessoas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(pessoaDTO)))

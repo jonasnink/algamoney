@@ -3,6 +3,7 @@ package br.mp.mpro.algamoney.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
  * A DTO for the Pessoa entity.
@@ -16,6 +17,20 @@ public class PessoaDTO implements Serializable {
     private String nome;
 
     private Boolean ativo;
+
+    @Lob
+    private byte[] foto;
+    private String fotoContentType;
+
+    private String email;
+
+    @Lob
+    private byte[] imgArquivo;
+    private String imgArquivoContentType;
+
+    @Lob
+    private byte[] arquivo;
+    private String arquivoContentType;
 
     private Long enderecoId;
 
@@ -43,6 +58,62 @@ public class PessoaDTO implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public String getFotoContentType() {
+        return fotoContentType;
+    }
+
+    public void setFotoContentType(String fotoContentType) {
+        this.fotoContentType = fotoContentType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getImgArquivo() {
+        return imgArquivo;
+    }
+
+    public void setImgArquivo(byte[] imgArquivo) {
+        this.imgArquivo = imgArquivo;
+    }
+
+    public String getImgArquivoContentType() {
+        return imgArquivoContentType;
+    }
+
+    public void setImgArquivoContentType(String imgArquivoContentType) {
+        this.imgArquivoContentType = imgArquivoContentType;
+    }
+
+    public byte[] getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(byte[] arquivo) {
+        this.arquivo = arquivo;
+    }
+
+    public String getArquivoContentType() {
+        return arquivoContentType;
+    }
+
+    public void setArquivoContentType(String arquivoContentType) {
+        this.arquivoContentType = arquivoContentType;
     }
 
     public Long getEnderecoId() {
@@ -88,6 +159,10 @@ public class PessoaDTO implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", ativo='" + isAtivo() + "'" +
+            ", foto='" + getFoto() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", imgArquivo='" + getImgArquivo() + "'" +
+            ", arquivo='" + getArquivo() + "'" +
             ", endereco=" + getEnderecoId() +
             ", endereco='" + getEnderecoNumero() + "'" +
             "}";

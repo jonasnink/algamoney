@@ -277,7 +277,7 @@ public class CategoriaResourceIntTest {
         // Create the Categoria
         CategoriaDTO categoriaDTO = categoriaMapper.toDto(categoria);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restCategoriaMockMvc.perform(put("/api/categorias")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(categoriaDTO)))

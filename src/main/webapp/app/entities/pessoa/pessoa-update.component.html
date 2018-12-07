@@ -29,6 +29,64 @@
                     <input type="checkbox" class="form-control" name="ativo" id="field_ativo"
                         [(ngModel)]="pessoa.ativo" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.pessoa.foto" for="field_foto">Foto</label>
+                    <div>
+                        <div *ngIf="pessoa.foto" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(pessoa.fotoContentType, pessoa.foto)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{pessoa.fotoContentType}}, {{byteSize(pessoa.foto)}}</span>
+                            <button type="button" (click)="pessoa.foto=null;pessoa.fotoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_foto" (change)="setFileData($event, pessoa, 'foto', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="foto" id="field_foto"
+                        [(ngModel)]="pessoa.foto" />
+                    <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
+                        [(ngModel)]="pessoa.fotoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.pessoa.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="pessoa.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.pessoa.imgArquivo" for="field_imgArquivo">Img Arquivo</label>
+                    <div>
+                        <img [src]="'data:' + pessoa.imgArquivoContentType + ';base64,' + pessoa.imgArquivo" style="max-height: 100px;" *ngIf="pessoa.imgArquivo" alt="pessoa image"/>
+                        <div *ngIf="pessoa.imgArquivo" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{pessoa.imgArquivoContentType}}, {{byteSize(pessoa.imgArquivo)}}</span>
+                            <button type="button" (click)="clearInputImage('imgArquivo', 'imgArquivoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imgArquivo" (change)="setFileData($event, pessoa, 'imgArquivo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imgArquivo" id="field_imgArquivo"
+                        [(ngModel)]="pessoa.imgArquivo" />
+                    <input type="hidden" class="form-control" name="imgArquivoContentType" id="field_imgArquivoContentType"
+                        [(ngModel)]="pessoa.imgArquivoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="algamoneyApp.pessoa.arquivo" for="field_arquivo">Arquivo</label>
+                    <div>
+                        <div *ngIf="pessoa.arquivo" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(pessoa.arquivoContentType, pessoa.arquivo)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{pessoa.arquivoContentType}}, {{byteSize(pessoa.arquivo)}}</span>
+                            <button type="button" (click)="pessoa.arquivo=null;pessoa.arquivoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_arquivo" (change)="setFileData($event, pessoa, 'arquivo', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="arquivo" id="field_arquivo"
+                        [(ngModel)]="pessoa.arquivo" />
+                    <input type="hidden" class="form-control" name="arquivoContentType" id="field_arquivoContentType"
+                        [(ngModel)]="pessoa.arquivoContentType" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="algamoneyApp.pessoa.endereco" for="field_endereco">Endereco</label>

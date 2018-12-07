@@ -14,6 +14,7 @@ public interface LancamentoMapper extends EntityMapper<LancamentoDTO, Lancamento
     @Mapping(source = "categoria.id", target = "categoriaId")
     @Mapping(source = "categoria.nome", target = "categoriaNome")
     @Mapping(source = "pessoa.id", target = "pessoaId")
+    @Mapping(source = "pessoa.nome", target = "pessoaNome")
     LancamentoDTO toDto(Lancamento lancamento);
 
     @Mapping(source = "categoriaId", target = "categoria")

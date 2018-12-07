@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contato">
+            <h2><span jhiTranslate="algamoneyApp.contato.detail.title">Contato</span> {{contato.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="algamoneyApp.contato.codigo">Codigo</span></dt>
+                <dd>
+                    <span>{{contato.codigo}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.nome">Nome</span></dt>
+                <dd>
+                    <span>{{contato.nome}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.email">Email</span></dt>
+                <dd>
+                    <span>{{contato.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.telefone">Telefone</span></dt>
+                <dd>
+                    <span>{{contato.telefone}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.teste">Teste</span></dt>
+                <dd>
+                    <span>{{contato.teste}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.teste2">Teste 2</span></dt>
+                <dd>
+                    <span>{{contato.teste2}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.teste3">Teste 3</span></dt>
+                <dd>
+                    <span>{{contato.teste3}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.contato.pessoa">Pessoa</span></dt>
+                <dd>
+                    <div *ngIf="contato.pessoaId">
+                        <a [routerLink]="['/pessoa', contato.pessoaId, 'view']">{{contato.pessoaNome}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contato', contato.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

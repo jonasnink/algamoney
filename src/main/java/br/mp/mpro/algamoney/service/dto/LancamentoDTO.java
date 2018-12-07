@@ -25,11 +25,15 @@ public class LancamentoDTO implements Serializable {
 
     private TipoLancamento tipoLancamento;
 
+    private String anexo;
+
     private Long categoriaId;
 
     private String categoriaNome;
 
     private Long pessoaId;
+
+    private String pessoaNome;
 
     public Long getId() {
         return id;
@@ -87,6 +91,14 @@ public class LancamentoDTO implements Serializable {
         this.tipoLancamento = tipoLancamento;
     }
 
+    public String getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(String anexo) {
+        this.anexo = anexo;
+    }
+
     public Long getCategoriaId() {
         return categoriaId;
     }
@@ -109,6 +121,14 @@ public class LancamentoDTO implements Serializable {
 
     public void setPessoaId(Long pessoaId) {
         this.pessoaId = pessoaId;
+    }
+
+    public String getPessoaNome() {
+        return pessoaNome;
+    }
+
+    public void setPessoaNome(String pessoaNome) {
+        this.pessoaNome = pessoaNome;
     }
 
     @Override
@@ -142,9 +162,11 @@ public class LancamentoDTO implements Serializable {
             ", valor=" + getValor() +
             ", observacao='" + getObservacao() + "'" +
             ", tipoLancamento='" + getTipoLancamento() + "'" +
+            ", anexo='" + getAnexo() + "'" +
             ", categoria=" + getCategoriaId() +
             ", categoria='" + getCategoriaNome() + "'" +
             ", pessoa=" + getPessoaId() +
+            ", pessoa='" + getPessoaNome() + "'" +
             "}";
     }
 }

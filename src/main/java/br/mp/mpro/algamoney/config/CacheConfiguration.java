@@ -42,6 +42,8 @@ public class CacheConfiguration {
             cm.createCache(br.mp.mpro.algamoney.domain.Pessoa.class.getName(), jcacheConfiguration);
             cm.createCache(br.mp.mpro.algamoney.domain.Categoria.class.getName(), jcacheConfiguration);
             cm.createCache(br.mp.mpro.algamoney.domain.Lancamento.class.getName(), jcacheConfiguration);
+            cm.createCache(br.mp.mpro.algamoney.domain.Contato.class.getName(), jcacheConfiguration);
+            cm.createCache(br.mp.mpro.algamoney.domain.Pessoa.class.getName() + ".contatos", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

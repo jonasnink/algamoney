@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { ILancamento } from 'app/shared/model/lancamento.model';
 import { Principal } from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { LancamentoService } from './lancamento.service';
-import { ILancamentoCriteria, ILancamentoFilter, LancamentoCriteria } from '../../shared/model/criteria/lancamento-filter.model';
-import { CriteriaNumberOrDate, CriteriaString } from '../../shared/model/criteria/criteria.model';
+import { LancamentoCriteria } from '../../shared/model/criteria/lancamento-filter.model';
+import { TiposCriteria } from '../../shared/model/criteria/criteria.model';
+import { ILancamento } from '../../shared/model/lancamento.model';
 
 @Component({
     selector: 'jhi-lancamento',
@@ -30,6 +30,7 @@ export class LancamentoComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    tiposCriteria: TiposCriteria;
 
     lancamentoCriteria = new LancamentoCriteria();
 
@@ -39,10 +40,10 @@ export class LancamentoComponent implements OnInit, OnDestroy {
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
-        private router: Router,
+        protected router: Router,
         private eventManager: JhiEventManager
     ) {
-        //this.lancamentoCriteria = new LancamentoCriteria();
+        //this.lancamentoCriteria = new LancamentoCriteriaCustom();
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe(data => {
             this.page = data.pagingParams.page;
@@ -50,12 +51,20 @@ export class LancamentoComponent implements OnInit, OnDestroy {
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
         });
+        this.tiposCriteria = new TiposCriteria();
     }
 
     filtrar(descricao: string) {
         //this.lancamentoCriteria.descricao.contains = descricao;
         this.lancamentoCriteria.descricao.specified = true;
         this.loadAll();
+    }
+    limparCriteria() {
+        for (let l in this.lancamentoCriteria) {
+            for (let c in this.lancamentoCriteria[l]) {
+                delete this.lancamentoCriteria[l][c];
+            }
+        }
     }
 
     loadAll() {
@@ -82,6 +91,7 @@ export class LancamentoComponent implements OnInit, OnDestroy {
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
             }
         });
+        console.log('paginação');
         this.loadAll();
     }
 
@@ -131,6 +141,9 @@ export class LancamentoComponent implements OnInit, OnDestroy {
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         this.queryCount = this.totalItems;
         this.lancamentos = data;
+
+        console.log('debug: data: ', data);
+        console.log('debug: lancamentos :', this.lancamentos);
     }
 
     private onError(errorMessage: string) {
@@ -147,11 +160,9 @@ export class LancamentoComponent implements OnInit, OnDestroy {
             if (this.lancamentoCriteria[l]) {
                 for (let c in this.lancamentoCriteria[l]) {
                     if (c !== 'constructor') {
-                        let x = l + '.' + c + '=' + this.lancamentoCriteria[l][c];
                         let prop = l + '.' + c;
                         let value = this.lancamentoCriteria[l][c];
                         req[prop] = value;
-                        console.log(x);
                     }
                 }
             }

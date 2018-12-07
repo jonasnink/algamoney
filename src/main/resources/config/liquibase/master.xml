@@ -6,11 +6,17 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180720130555_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180720130556_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180720130556_added_entity_Pessoa.xml" relativeToChangelogFile="false"/> 
     <include file="config/liquibase/changelog/20180720130557_added_entity_Categoria.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180720130558_added_entity_Lancamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180806152328_added_entity_Contato.xml" relativeToChangelogFile="false"/>
+
+    <!-- <include file="config/liquibase/changelog/20180816155629_diff_added_field_anexo3_in_entity_Contato.xml" relativeToChangelogFile="false"/> -->
+        
+    
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180720130556_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180720130558_added_entity_constraints_Lancamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180806152328_added_entity_constraints_Contato.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

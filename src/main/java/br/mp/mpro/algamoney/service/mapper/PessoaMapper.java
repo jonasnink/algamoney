@@ -16,6 +16,7 @@ public interface PessoaMapper extends EntityMapper<PessoaDTO, Pessoa> {
     PessoaDTO toDto(Pessoa pessoa);
 
     @Mapping(source = "enderecoId", target = "endereco")
+    @Mapping(target = "contatos", ignore = true)
     Pessoa toEntity(PessoaDTO pessoaDTO);
 
     default Pessoa fromId(Long id) {

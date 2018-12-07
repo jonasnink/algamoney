@@ -22,6 +22,7 @@
             "valor": "Valor",
             "observacao": "Observacao",
             "tipoLancamento": "Tipo Lancamento",
+            "anexo": "Anexo",
             "categoria": "Categoria",
             "pessoa": "Pessoa"
         }

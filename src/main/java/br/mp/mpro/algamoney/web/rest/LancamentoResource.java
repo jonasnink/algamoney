@@ -8,8 +8,6 @@ import br.mp.mpro.algamoney.web.rest.util.PaginationUtil;
 import br.mp.mpro.algamoney.service.dto.LancamentoDTO;
 import br.mp.mpro.algamoney.service.dto.LancamentoCriteria;
 import br.mp.mpro.algamoney.service.LancamentoQueryService;
-import io.github.jhipster.service.filter.LongFilter;
-import io.github.jhipster.service.filter.StringFilter;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,8 +96,6 @@ public class LancamentoResource {
     @GetMapping("/lancamentos")
     @Timed
     public ResponseEntity<List<LancamentoDTO>> getAllLancamentos(LancamentoCriteria criteria, Pageable pageable) {
-       // criteria.setCategoriaId((((LongFilter)new LongFilter().setEquals(Long.valueOf("1101")))));
-       // criteria.setDescricao(new StringFilter().setContains("ca"));
         log.debug("REST request to get Lancamentos by criteria: {}", criteria);
         Page<LancamentoDTO> page = lancamentoQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/lancamentos");

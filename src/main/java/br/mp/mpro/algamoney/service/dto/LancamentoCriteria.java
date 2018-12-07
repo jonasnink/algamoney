@@ -47,6 +47,8 @@ public class LancamentoCriteria implements Serializable {
 
     private TipoLancamentoFilter tipoLancamento;
 
+    private StringFilter anexo;
+
     private LongFilter categoriaId;
 
     private LongFilter pessoaId;
@@ -110,6 +112,14 @@ public class LancamentoCriteria implements Serializable {
         this.tipoLancamento = tipoLancamento;
     }
 
+    public StringFilter getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(StringFilter anexo) {
+        this.anexo = anexo;
+    }
+
     public LongFilter getCategoriaId() {
         return categoriaId;
     }
@@ -136,6 +146,7 @@ public class LancamentoCriteria implements Serializable {
                 (valor != null ? "valor=" + valor + ", " : "") +
                 (observacao != null ? "observacao=" + observacao + ", " : "") +
                 (tipoLancamento != null ? "tipoLancamento=" + tipoLancamento + ", " : "") +
+                (anexo != null ? "anexo=" + anexo + ", " : "") +
                 (categoriaId != null ? "categoriaId=" + categoriaId + ", " : "") +
                 (pessoaId != null ? "pessoaId=" + pessoaId + ", " : "") +
             "}";

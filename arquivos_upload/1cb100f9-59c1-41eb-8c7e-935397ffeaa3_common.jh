@@ -1,0 +1,47 @@
+entity Arquivo {
+	nome String,
+    contentType String
+}
+
+entity Comarca {
+	descricao String maxlength(80),
+    sigla String maxlength(4),
+    unidadeFederativa UnidadeFederativa
+}
+
+entity Orgao {
+	descricao String maxlength(10),
+    descricaoConjunta String maxlength(150),
+    classeOrgao ClasseOrgao,
+    sigla String maxlength(20),
+    email String maxlength(40),
+    identidade Long maxlength(10),
+    ativo SimNao
+}
+relationship ManyToOne {
+	Orgao{comarca(descricao)} to Comarca
+}
+
+entity Titularidade {
+	descricao String maxlength(50)
+}
+
+entity Servidor {
+	nome String maxlength(160),
+    nomeConsulta String maxlength(160),
+    situacao SituacaoServidor,
+    email String,
+    identidade Long
+}
+
+relationship ManyToOne {
+	Servidor{orgao(descricao)} to Orgao
+}
+relationship ManyToOne {
+    Servidor{titularidade(descricao)} to Titularidade
+}
+
+dto * with mapstruct
+service all with serviceImpl
+paginate * with pagination
+filter Arquivo, Servidor, Orgao, Comarca, Titularidade

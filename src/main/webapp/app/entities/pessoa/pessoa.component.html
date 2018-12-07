@@ -17,6 +17,10 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="nome"><span jhiTranslate="algamoneyApp.pessoa.nome">Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ativo"><span jhiTranslate="algamoneyApp.pessoa.ativo">Ativo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto"><span jhiTranslate="algamoneyApp.pessoa.foto">Foto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="algamoneyApp.pessoa.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imgArquivo"><span jhiTranslate="algamoneyApp.pessoa.imgArquivo">Img Arquivo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="arquivo"><span jhiTranslate="algamoneyApp.pessoa.arquivo">Arquivo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="enderecoNumero"><span jhiTranslate="algamoneyApp.pessoa.endereco">Endereco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -26,6 +30,21 @@
                 <td><a [routerLink]="['/pessoa', pessoa.id, 'view' ]">{{pessoa.id}}</a></td>
                 <td>{{pessoa.nome}}</td>
                 <td>{{pessoa.ativo}}</td>
+                <td>
+                    <a *ngIf="pessoa.foto" (click)="openFile(pessoa.fotoContentType, pessoa.foto)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="pessoa.foto">{{pessoa.fotoContentType}}, {{byteSize(pessoa.foto)}}</span>
+                </td>
+                <td>{{pessoa.email}}</td>
+                <td>
+                    <a *ngIf="pessoa.imgArquivo" (click)="openFile(pessoa.imgArquivoContentType, pessoa.imgArquivo)">
+                        <img [src]="'data:' + pessoa.imgArquivoContentType + ';base64,' + pessoa.imgArquivo" style="max-height: 30px;" alt="pessoa image"/>
+                    </a>
+                    <span *ngIf="pessoa.imgArquivo">{{pessoa.imgArquivoContentType}}, {{byteSize(pessoa.imgArquivo)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="pessoa.arquivo" (click)="openFile(pessoa.arquivoContentType, pessoa.arquivo)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="pessoa.arquivo">{{pessoa.arquivoContentType}}, {{byteSize(pessoa.arquivo)}}</span>
+                </td>
                 <td>
                     <div *ngIf="pessoa.enderecoId">
                         <a [routerLink]="['../endereco', pessoa.enderecoId , 'view' ]" >{{pessoa.enderecoNumero}}</a>

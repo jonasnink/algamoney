@@ -47,6 +47,9 @@ public class Lancamento implements Serializable {
     @Column(name = "tipo_lancamento")
     private TipoLancamento tipoLancamento;
 
+    @Column(name = "anexo")
+    private String anexo;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Categoria categoria;
@@ -142,6 +145,19 @@ public class Lancamento implements Serializable {
         this.tipoLancamento = tipoLancamento;
     }
 
+    public String getAnexo() {
+        return anexo;
+    }
+
+    public Lancamento anexo(String anexo) {
+        this.anexo = anexo;
+        return this;
+    }
+
+    public void setAnexo(String anexo) {
+        this.anexo = anexo;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
@@ -199,6 +215,7 @@ public class Lancamento implements Serializable {
             ", valor=" + getValor() +
             ", observacao='" + getObservacao() + "'" +
             ", tipoLancamento='" + getTipoLancamento() + "'" +
+            ", anexo='" + getAnexo() + "'" +
             "}";
     }
 }

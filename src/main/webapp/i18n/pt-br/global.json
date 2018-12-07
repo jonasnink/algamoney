@@ -11,6 +11,7 @@
                 "pessoa": "Pessoa",
                 "categoria": "Categoria",
                 "lancamento": "Lancamento",
+                "contato": "Contato",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

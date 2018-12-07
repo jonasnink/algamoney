@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
                 {
                     path: 'admin',
                     loadChildren: './admin/admin.module#AlgamoneyAdminModule'
+                },
+                {
+                    path: 'relatorios',
+                    loadChildren: './relatorios/relatorios.module#RelatoriosModule'
                 }
             ],
             { useHash: true, enableTracing: DEBUG_INFO_ENABLED }

@@ -13,6 +13,33 @@
                 <dd>
                     <span>{{pessoa.ativo}}</span>
                 </dd>
+                <dt><span jhiTranslate="algamoneyApp.pessoa.foto">Foto</span></dt>
+                <dd>
+                    <div *ngIf="pessoa.foto">
+                        <a (click)="openFile(pessoa.fotoContentType, pessoa.foto)" jhiTranslate="entity.action.open">open</a>
+                        {{pessoa.fotoContentType}}, {{byteSize(pessoa.foto)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.pessoa.email">Email</span></dt>
+                <dd>
+                    <span>{{pessoa.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.pessoa.imgArquivo">Img Arquivo</span></dt>
+                <dd>
+                    <div *ngIf="pessoa.imgArquivo">
+                        <a (click)="openFile(pessoa.imgArquivoContentType, pessoa.imgArquivo)">
+                            <img [src]="'data:' + pessoa.imgArquivoContentType + ';base64,' + pessoa.imgArquivo" style="max-width: 100%;" alt="pessoa image"/>
+                        </a>
+                        {{pessoa.imgArquivoContentType}}, {{byteSize(pessoa.imgArquivo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="algamoneyApp.pessoa.arquivo">Arquivo</span></dt>
+                <dd>
+                    <div *ngIf="pessoa.arquivo">
+                        <a (click)="openFile(pessoa.arquivoContentType, pessoa.arquivo)" jhiTranslate="entity.action.open">open</a>
+                        {{pessoa.arquivoContentType}}, {{byteSize(pessoa.arquivo)}}
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="algamoneyApp.pessoa.endereco">Endereco</span></dt>
                 <dd>
                     <div *ngIf="pessoa.enderecoId">

@@ -3,6 +3,7 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import locale from '@angular/common/locales/pt';
+import { RelatoriosService } from '../relatorios/relatorios.service';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -14,7 +15,8 @@ import locale from '@angular/common/locales/pt';
             provide: LOCALE_ID,
             useValue: 'pt'
         },
-        DatePipe
+        DatePipe,
+        RelatoriosService
     ]
 })
 export class AlgamoneyCoreModule {

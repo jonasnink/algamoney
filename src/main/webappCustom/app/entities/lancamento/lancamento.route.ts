@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Lancamento } from 'app/shared/model/lancamento.model';
 import { LancamentoService } from './lancamento.service';
 import { LancamentoComponent } from './lancamento.component';
 import { LancamentoDetailComponent } from './lancamento-detail.component';
 import { LancamentoUpdateComponent } from './lancamento-update.component';
 import { LancamentoDeletePopupComponent } from './lancamento-delete-dialog.component';
-import { ILancamento } from 'app/shared/model/lancamento.model';
-import { LancamentoPesquisaComponent } from './lancamento-pesquisa/lancamento-pesquisa.component';
+import { LancamentoResumoComponent } from './resumo/lancamento-resumo.component';
+import { ILancamento, Lancamento } from '../../shared/model/lancamento.model';
 
 @Injectable({ providedIn: 'root' })
 export class LancamentoResolve implements Resolve<ILancamento> {
@@ -41,8 +40,8 @@ export const lancamentoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'lancamento/resumo',
-        component: LancamentoPesquisaComponent,
+        path: 'lancamento-resumo',
+        component: LancamentoResumoComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
         },

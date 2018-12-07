@@ -21,8 +21,9 @@
             <th jhiSortBy="valor"><span jhiTranslate="algamoneyApp.lancamento.valor">Valor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="observacao"><span jhiTranslate="algamoneyApp.lancamento.observacao">Observacao</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="tipoLancamento"><span jhiTranslate="algamoneyApp.lancamento.tipoLancamento">Tipo Lancamento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="anexo"><span jhiTranslate="algamoneyApp.lancamento.anexo">Anexo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoriaNome"><span jhiTranslate="algamoneyApp.lancamento.categoria">Categoria</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="pessoaId"><span jhiTranslate="algamoneyApp.lancamento.pessoa">Pessoa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="pessoaNome"><span jhiTranslate="algamoneyApp.lancamento.pessoa">Pessoa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +36,7 @@
                 <td>{{lancamento.valor}}</td>
                 <td>{{lancamento.observacao}}</td>
                 <td jhiTranslate="{{'algamoneyApp.TipoLancamento.' + lancamento.tipoLancamento}}">{{lancamento.tipoLancamento}}</td>
+                <td>{{lancamento.anexo}}</td>
                 <td>
                     <div *ngIf="lancamento.categoriaId">
                         <a [routerLink]="['../categoria', lancamento.categoriaId , 'view' ]" >{{lancamento.categoriaNome}}</a>
@@ -42,7 +44,7 @@
                 </td>
                 <td>
                     <div *ngIf="lancamento.pessoaId">
-                        <a [routerLink]="['../pessoa', lancamento.pessoaId , 'view' ]" >{{lancamento.pessoaId}}</a>
+                        <a [routerLink]="['../pessoa', lancamento.pessoaId , 'view' ]" >{{lancamento.pessoaNome}}</a>
                     </div>
                 </td>
                 <td class="text-right">

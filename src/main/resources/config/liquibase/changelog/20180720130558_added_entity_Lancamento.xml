@@ -45,6 +45,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="anexo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="categoria_id" type="bigint">
                 <constraints nullable="true" />
             </column>

@@ -1,5 +1,20 @@
 {
-    "name": "Pessoa",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "otherEntityField": "numero"
+        },
+        {
+            "relationshipName": "contatos",
+            "otherEntityName": "contato",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "pessoa"
+        }
+    ],
     "fields": [
         {
             "fieldName": "nome",
@@ -13,23 +28,32 @@
         {
             "fieldName": "ativo",
             "fieldType": "Boolean"
-        }
-    ],
-    "relationships": [
+        },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "endereco",
-            "otherEntityName": "endereco",
-            "otherEntityField": "numero"
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imgArquivo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "arquivo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
         }
     ],
     "changelogDate": "20180720130556",
-    "entityTableName": "pessoa",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceImpl",
+    "entityTableName": "pessoa",
     "jpaMetamodelFiltering": true,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+    "pagination": "pagination"
 }

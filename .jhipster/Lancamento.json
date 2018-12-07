@@ -1,5 +1,20 @@
 {
-    "name": "Lancamento",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "otherEntityField": "nome"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pessoa",
+            "otherEntityName": "pessoa",
+            "otherEntityField": "nome"
+        }
+    ],
     "fields": [
         {
             "fieldName": "descricao",
@@ -25,29 +40,17 @@
             "fieldName": "tipoLancamento",
             "fieldType": "TipoLancamento",
             "fieldValues": "RECEITA,DESPESA"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "categoria",
-            "otherEntityName": "categoria",
-            "otherEntityField": "nome"
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "pessoa",
-            "otherEntityName": "pessoa",
-            "otherEntityField": "id"
+            "fieldName": "anexo",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180720130558",
-    "entityTableName": "lancamento",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceImpl",
+    "entityTableName": "lancamento",
     "jpaMetamodelFiltering": true,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+    "pagination": "pagination"
 }

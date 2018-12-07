@@ -32,7 +32,11 @@ public class PessoaCriteria implements Serializable {
 
     private BooleanFilter ativo;
 
+    private StringFilter email;
+
     private LongFilter enderecoId;
+
+    private LongFilter contatosId;
 
     public PessoaCriteria() {
     }
@@ -61,6 +65,14 @@ public class PessoaCriteria implements Serializable {
         this.ativo = ativo;
     }
 
+    public StringFilter getEmail() {
+        return email;
+    }
+
+    public void setEmail(StringFilter email) {
+        this.email = email;
+    }
+
     public LongFilter getEnderecoId() {
         return enderecoId;
     }
@@ -69,13 +81,23 @@ public class PessoaCriteria implements Serializable {
         this.enderecoId = enderecoId;
     }
 
+    public LongFilter getContatosId() {
+        return contatosId;
+    }
+
+    public void setContatosId(LongFilter contatosId) {
+        this.contatosId = contatosId;
+    }
+
     @Override
     public String toString() {
         return "PessoaCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (nome != null ? "nome=" + nome + ", " : "") +
                 (ativo != null ? "ativo=" + ativo + ", " : "") +
+                (email != null ? "email=" + email + ", " : "") +
                 (enderecoId != null ? "enderecoId=" + enderecoId + ", " : "") +
+                (contatosId != null ? "contatosId=" + contatosId + ", " : "") +
             "}";
     }
 

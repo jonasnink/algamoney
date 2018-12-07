@@ -94,6 +94,9 @@ public class LancamentoQueryService extends QueryService<Lancamento> {
             if (criteria.getTipoLancamento() != null) {
                 specification = specification.and(buildSpecification(criteria.getTipoLancamento(), Lancamento_.tipoLancamento));
             }
+            if (criteria.getAnexo() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getAnexo(), Lancamento_.anexo));
+            }
             if (criteria.getCategoriaId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getCategoriaId(), Lancamento_.categoria, Categoria_.id));
             }

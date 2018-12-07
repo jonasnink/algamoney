@@ -43,10 +43,13 @@ spring:
     liquibase:
         contexts: prod
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.mpro.mp.br
+        port: 587
+        username: jonas.nink@mpro.mp.br
+        password: 02b09214
+        properties.mail.smtp:
+            starttls.enable: true
+            ssl.trust: smtp.mpro.mp.br
     thymeleaf:
         cache: true
 
@@ -99,7 +102,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: algamoney@localhost
+        from: jonas.nink@mpro.mp.br
         base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:

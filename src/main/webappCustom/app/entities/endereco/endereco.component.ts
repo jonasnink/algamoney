@@ -59,6 +59,17 @@ export class EnderecoComponent implements OnInit, OnDestroy {
                 (res: HttpResponse<IEndereco[]>) => this.paginateEnderecos(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
+
+        // this.enderecoService
+        //     .query({
+        //         page: this.page - 1,
+        //         size: this.itemsPerPage,
+        //         sort: this.sort()
+        //     })
+        //     .subscribe(
+        //         (res: HttpResponse<IEndereco[]>) => this.paginateEnderecos(res.body, res.headers),
+        //         (res: HttpErrorResponse) => this.onError(res.message)
+        //     );
     }
 
     loadPage(page: number) {

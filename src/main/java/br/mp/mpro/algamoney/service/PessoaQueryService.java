@@ -82,8 +82,14 @@ public class PessoaQueryService extends QueryService<Pessoa> {
             if (criteria.getAtivo() != null) {
                 specification = specification.and(buildSpecification(criteria.getAtivo(), Pessoa_.ativo));
             }
+            if (criteria.getEmail() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEmail(), Pessoa_.email));
+            }
             if (criteria.getEnderecoId() != null) {
                 specification = specification.and(buildReferringEntitySpecification(criteria.getEnderecoId(), Pessoa_.endereco, Endereco_.id));
+            }
+            if (criteria.getContatosId() != null) {
+                specification = specification.and(buildReferringEntitySpecification(criteria.getContatosId(), Pessoa_.contatos, Contato_.id));
             }
         }
         return specification;

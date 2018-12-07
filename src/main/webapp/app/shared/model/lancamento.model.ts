@@ -13,8 +13,10 @@ export interface ILancamento {
     valor?: number;
     observacao?: string;
     tipoLancamento?: TipoLancamento;
+    anexo?: string;
     categoriaNome?: string;
     categoriaId?: number;
+    pessoaNome?: string;
     pessoaId?: number;
 }
 
@@ -27,8 +29,10 @@ export class Lancamento implements ILancamento {
         public valor?: number,
         public observacao?: string,
         public tipoLancamento?: TipoLancamento,
+        public anexo?: string,
         public categoriaNome?: string,
         public categoriaId?: number,
+        public pessoaNome?: string,
         public pessoaId?: number
     ) {}
 }

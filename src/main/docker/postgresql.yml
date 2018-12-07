@@ -5,7 +5,7 @@ services:
         # volumes:
         #     - ~/volumes/jhipster/algamoney/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_USER=algamoney
+            - POSTGRES_PASSWORD=
         ports:
             - 5432:5432
